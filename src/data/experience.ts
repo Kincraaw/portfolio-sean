@@ -34,12 +34,10 @@ export const experiences: TimelineItem[] = [
     details: {
       fr: [
         "Site e-commerce inspiré de Nike (PHP, HTML, CSS, JavaScript, SQL)",
-        "Application lourde en C#",
         "Portfolio en HTML et CSS",
       ],
       en: [
         "E-commerce website inspired by Nike (PHP, HTML, CSS, JavaScript, SQL)",
-        "Desktop application in C#",
         "Portfolio in HTML and CSS",
       ],
     },

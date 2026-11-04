@@ -90,15 +90,6 @@ export const skills: Skill[] = [
     },
   },
   {
-    slug: "csharp",
-    name: "C#",
-    category: categories.language,
-    description: {
-      fr: "Langage orienté objet de Microsoft, utilisé pour développer des applications lourdes.",
-      en: "Microsoft’s object-oriented language, used to build desktop applications.",
-    },
-  },
-  {
     slug: "git",
     name: "Git / GitHub",
     category: categories.tools,

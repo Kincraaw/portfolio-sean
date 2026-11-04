@@ -9,7 +9,7 @@ export const alt = `${site.fullName} — ${t.meta.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const stack = ["React", "Next.js", "TypeScript", "PHP", "C#"];
+const stack = ["React", "Next.js", "TypeScript", "PHP", "SQL"];
 
 export default function OpengraphImage() {
   return new ImageResponse(

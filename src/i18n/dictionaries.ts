@@ -5,7 +5,7 @@ const fr = {
   meta: {
     role: "Développeur Fullstack",
     description:
-      "Portfolio de Sean Chaophrasy-Tran, développeur fullstack (React, PHP, C#) en Bachelor à l’IPSSI, en recherche d’alternance.",
+      "Portfolio de Sean Chaophrasy-Tran, développeur fullstack (React, PHP, SQL) en Bachelor à l’IPSSI, en recherche d’alternance.",
   },
   nav: {
     home: "Accueil",
@@ -42,7 +42,7 @@ const fr = {
     title: "Construire des outils",
     highlight: "qui servent vraiment.",
     p1: "Je suis Sean Chaophrasy-Tran, développeur fullstack basé à Lognes. Après un BTS et deux ans d’alternance chez Alphalink, où j’ai conçu le dashboard utilisé par les clients de l’entreprise, je poursuis en Bachelor Développement Fullstack à l’IPSSI.",
-    p2: "J’aime partir d’un besoin concret et en faire une interface claire, responsive et agréable à utiliser — en React côté front, en PHP ou C# quand il faut aller plus loin.",
+    p2: "J’aime partir d’un besoin concret et en faire une interface claire, responsive et agréable à utiliser — en React côté front, en PHP et SQL côté serveur.",
     p3Before: "Je recherche une alternance de 12 mois, au rythme de ",
     p3Strong: "1 semaine à l’école / 3 semaines en entreprise",
     p3After: ".",
@@ -143,7 +143,7 @@ const en: Dictionary = {
   meta: {
     role: "Fullstack Developer",
     description:
-      "Portfolio of Sean Chaophrasy-Tran, fullstack developer (React, PHP, C#) studying for a Bachelor’s degree at IPSSI, looking for a work-study position.",
+      "Portfolio of Sean Chaophrasy-Tran, fullstack developer (React, PHP, SQL) studying for a Bachelor’s degree at IPSSI, looking for a work-study position.",
   },
   nav: {
     home: "Home",
@@ -180,7 +180,7 @@ const en: Dictionary = {
     title: "Building tools",
     highlight: "that truly help.",
     p1: "I’m Sean Chaophrasy-Tran, a fullstack developer based in Lognes, near Paris. After a two-year technical degree (BTS) and two years of work-study at Alphalink, where I built the dashboard used by the company’s customers, I’m now studying for a Bachelor’s in Fullstack Development at IPSSI.",
-    p2: "I like starting from a real need and turning it into a clear, responsive and pleasant interface — with React on the front end, and PHP or C# when it needs to go further.",
+    p2: "I like starting from a real need and turning it into a clear, responsive and pleasant interface — with React on the front end, and PHP and SQL on the server side.",
     p3Before: "I’m looking for a 12-month work-study position, with a schedule of ",
     p3Strong: "1 week at school / 3 weeks at the company",
     p3After: ".",

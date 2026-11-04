@@ -64,25 +64,6 @@ export const projects: Project[] = [
     skills: ["php", "sql", "html-css", "javascript"],
   },
   {
-    slug: "application-csharp",
-    title: { fr: "Application lourde en C#", en: "C# desktop application" },
-    context: { fr: "Projet d’école — Ingetis", en: "School project — Ingetis" },
-    period: "2024 — 2025",
-    summary: {
-      fr: "Une application de bureau développée en C# dans le cadre du BTS.",
-      en: "A desktop application built in C# as part of my BTS degree.",
-    },
-    description: {
-      fr: [
-        "Projet d’école consacré au développement d’une application lourde (application de bureau) en C#, avec une approche orientée objet.",
-      ],
-      en: [
-        "A school project focused on building a desktop application in C#, using an object-oriented approach.",
-      ],
-    },
-    skills: ["csharp"],
-  },
-  {
     slug: "portfolio",
     title: { fr: "Mon portfolio", en: "My portfolio" },
     context: { fr: "Projet personnel", en: "Personal project" },
