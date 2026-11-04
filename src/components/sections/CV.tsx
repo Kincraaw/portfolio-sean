@@ -1,21 +1,16 @@
 import { Download, ExternalLink, FileText } from "lucide-react";
 import { site } from "@/data/site";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function CV() {
   return (
     <section id="cv" className="w-full px-6 py-32">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
-          <span className="text-sm uppercase tracking-[0.3em] text-accent">
-            03 — Mon parcours
-          </span>
-
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Mon CV<span className="text-accent">.</span>
-          </h2>
+          <SectionTitle index={4} label="CV" title="Mon" highlight="CV." className="" />
 
           <p className="mt-4 text-muted">
-            Découvrez mon parcours, mes expériences et mes compétences.
+            Toutes mes expériences et compétences, sur une seule page.
           </p>
         </div>
 

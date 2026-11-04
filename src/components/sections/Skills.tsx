@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import SectionTitle from "@/components/ui/SectionTitle";
 import { skills } from "@/data/skills";
 import { getProjectsBySkill } from "@/data/projects";
 
@@ -7,13 +8,12 @@ export default function Skills() {
   return (
     <section id="skills" className="px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-accent">
-          02 — Compétences
-        </p>
-
-        <h2 className="mb-14 text-4xl font-bold md:text-5xl">
-          Mon environnement <span className="text-accent">technique.</span>
-        </h2>
+        <SectionTitle
+          index={2}
+          label="Compétences"
+          title="Mon environnement"
+          highlight="technique."
+        />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {skills.map((skill, index) => {

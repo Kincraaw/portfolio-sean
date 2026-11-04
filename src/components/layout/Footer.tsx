@@ -8,7 +8,7 @@ export default function Footer() {
     <footer id="contact" className="border-t border-line px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <p className="mb-5 text-sm uppercase tracking-[0.3em] text-accent">
-          04 — Contact
+          05 — Contact
         </p>
 
         <h2 className="max-w-3xl text-4xl font-bold md:text-6xl">

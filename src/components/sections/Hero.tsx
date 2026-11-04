@@ -44,7 +44,7 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="#cv"
+              href="#parcours"
               className="rounded-full bg-accent px-7 py-4 font-semibold text-on-accent transition hover:-translate-y-1 hover:bg-accent-hover"
             >
               Découvrir mon parcours ↗

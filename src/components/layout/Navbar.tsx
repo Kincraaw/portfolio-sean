@@ -10,6 +10,7 @@ const links = [
   { name: "Accueil", href: "/#home" },
   { name: "À propos", href: "/#about" },
   { name: "Compétences", href: "/#skills" },
+  { name: "Parcours", href: "/#parcours" },
   { name: "CV", href: "/#cv" },
   { name: "Contact", href: "#contact" },
 ];
