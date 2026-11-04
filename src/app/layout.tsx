@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sean | Développeur Web",
-  description: "Portfolio de Sean, développeur web.",
+  title: "Sean Chaophrasy-Tran | Développeur Fullstack",
+  description:
+    "Portfolio de Sean Chaophrasy-Tran, développeur fullstack (React, PHP, C#) en Bachelor à l’IPSSI, en recherche d’alternance.",
 };
 
 // Applique le thème (choix enregistré, sinon préférence du système)

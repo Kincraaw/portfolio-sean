@@ -17,7 +17,7 @@ export default function Hero() {
           <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-accent/20 bg-accent/5 px-4 py-2">
             <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
             <span className="text-xs tracking-wide text-accent-soft">
-              DISPONIBLE POUR DE NOUVEAUX PROJETS
+              {site.availability.toUpperCase()}
             </span>
           </div>
 
@@ -26,20 +26,21 @@ export default function Hero() {
           </p>
 
           <h1 className="text-6xl font-bold leading-tight tracking-tight md:text-8xl">
-            Sean<span className="text-accent">.</span>
+            {site.name}<span className="text-accent">.</span>
           </h1>
 
           <h2 className="mt-5 text-2xl font-semibold text-fg-soft md:text-3xl">
             Développeur{" "}
-            <span className="text-accent">Web</span>
+            <span className="text-accent">Fullstack</span>
             <br />
-            & Créatif.
+            en Bachelor à l’IPSSI.
           </h2>
 
           <p className="mt-7 max-w-lg text-base leading-8 text-muted">
-            Je conçois et développe des expériences web modernes,
-            performantes et intuitives. J’aime transformer des idées
-            en projets concrets.
+            Deux ans d’alternance chez Alphalink m’ont appris à livrer des
+            interfaces React utilisées par de vrais clients. Je cherche
+            aujourd’hui une nouvelle alternance pour continuer à construire,
+            du front au back.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">

@@ -12,9 +12,14 @@ export default function Footer() {
         </p>
 
         <h2 className="max-w-3xl text-4xl font-bold md:text-6xl">
-          Un projet en tête ?
+          Une alternance à proposer ?
           <span className="text-accent"> Parlons-en.</span>
         </h2>
+
+        <p className="mt-6 max-w-xl leading-8 text-muted">
+          Je réponds rapidement par email. Vous pouvez aussi jeter un œil à mon
+          code sur GitHub.
+        </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
           <a
@@ -36,8 +41,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-24 flex flex-col justify-between gap-4 border-t border-line pt-8 text-sm text-subtle md:flex-row">
-          <p>© {new Date().getFullYear()} {site.name}. Tous droits réservés.</p>
-          <p>Designed & developed with passion.</p>
+          <p>© {new Date().getFullYear()} {site.fullName}. Tous droits réservés.</p>
+          <p>Conçu et développé par moi-même avec Next.js et Tailwind CSS.</p>
         </div>
       </div>
     </footer>
