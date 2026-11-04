@@ -1,9 +1,11 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/data/site";
+import { dictionaries } from "@/i18n/dictionaries";
 
 // Image d'aperçu affichée quand le lien du site est partagé
-// (LinkedIn, Discord, WhatsApp, X…).
-export const alt = `${site.fullName} — ${site.role}`;
+// (LinkedIn, Discord, WhatsApp, X…). Une seule image, en français.
+const t = dictionaries.fr;
+export const alt = `${site.fullName} — ${t.meta.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -41,7 +43,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ width: 14, height: 14, borderRadius: 999, background: "#4ade80" }} />
-          {site.availability}
+          {t.hero.availability}
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -50,7 +52,7 @@ export default function OpengraphImage() {
             <span style={{ color: "#22d3ee" }}>.</span>
           </div>
           <div style={{ display: "flex", marginTop: 20, fontSize: 44, color: "#d1d5db" }}>
-            {site.role}
+            {t.meta.role}
           </div>
         </div>
 

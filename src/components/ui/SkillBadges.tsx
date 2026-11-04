@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getSkill } from "@/data/skills";
+import { localePath } from "@/i18n/config";
+import { getLocale } from "@/i18n/server";
 
 type SkillBadgesProps = {
   slugs: string[];
@@ -9,7 +11,8 @@ type SkillBadgesProps = {
 };
 
 /** Liste de technologies ; chaque badge mène à la page de la compétence. */
-export default function SkillBadges({ slugs, current, size = "md" }: SkillBadgesProps) {
+export default async function SkillBadges({ slugs, current, size = "md" }: SkillBadgesProps) {
+  const locale = await getLocale();
   const padding = size === "sm" ? "px-3 py-1 text-xs" : "px-4 py-1.5 text-sm";
 
   return (
@@ -22,7 +25,7 @@ export default function SkillBadges({ slugs, current, size = "md" }: SkillBadges
         return (
           <li key={skill.slug}>
             <Link
-              href={`/competences/${skill.slug}`}
+              href={localePath(locale, `/competences/${skill.slug}`)}
               aria-current={isCurrent ? "page" : undefined}
               className={`relative z-10 inline-block rounded-full ${padding} ${
                 isCurrent

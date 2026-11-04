@@ -2,6 +2,7 @@
 
 import { useLayoutEffect } from "react";
 import { Moon, Sun } from "lucide-react";
+import { useI18n } from "@/i18n/client";
 
 type Theme = "light" | "dark";
 
@@ -16,6 +17,8 @@ function getPreferredTheme(): Theme {
 }
 
 export default function ThemeToggle() {
+  const { t } = useI18n();
+
   // En dev, le Strict Mode de React efface l'attribut posé par le script
   // inline : on le réapplique avant l'affichage. Sans effet en production.
   useLayoutEffect(() => {
@@ -55,8 +58,8 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label="Changer de thème (clair / sombre)"
-      title="Changer de thème"
+      aria-label={t.theme.toggle}
+      title={t.theme.title}
       className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-line-strong text-fg-soft transition hover:border-accent hover:text-accent"
     >
       <Sun

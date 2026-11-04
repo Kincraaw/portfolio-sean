@@ -1,46 +1,38 @@
 import { Languages, MapPin } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { site } from "@/data/site";
+import { tr } from "@/i18n/config";
+import { getI18n } from "@/i18n/server";
 
-export default function About() {
+export default async function About() {
+  const { locale, t } = await getI18n();
+
   return (
     <section id="about" className="px-6 py-32">
       <div className="reveal mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-2">
           <SectionTitle
             index={1}
-            label="À propos"
-            title="Construire des outils"
-            highlight="qui servent vraiment."
+            label={t.about.label}
+            title={t.about.title}
+            highlight={t.about.highlight}
             className=""
           />
 
           <div>
-            <p className="leading-8 text-muted">
-              Je suis {site.fullName}, développeur fullstack basé à{" "}
-              {site.location}. Après un BTS et deux ans d’alternance chez
-              Alphalink, où j’ai conçu le dashboard utilisé par les clients de
-              l’entreprise, je poursuis en Bachelor Développement Fullstack à
-              l’IPSSI.
-            </p>
+            <p className="leading-8 text-muted">{t.about.p1}</p>
+
+            <p className="mt-5 leading-8 text-muted">{t.about.p2}</p>
 
             <p className="mt-5 leading-8 text-muted">
-              J’aime partir d’un besoin concret et en faire une interface
-              claire, responsive et agréable à utiliser — en React côté front,
-              en PHP ou C# quand il faut aller plus loin.
-            </p>
-
-            <p className="mt-5 leading-8 text-muted">
-              Je recherche une alternance de 12 mois, au rythme de{" "}
-              <strong className="font-semibold text-fg-soft">
-                1 semaine à l’école / 3 semaines en entreprise
-              </strong>
-              .
+              {t.about.p3Before}
+              <strong className="font-semibold text-fg-soft">{t.about.p3Strong}</strong>
+              {t.about.p3After}
             </p>
 
             {/* Qualités */}
             <ul className="mt-8 flex flex-wrap gap-2">
-              {site.qualities.map((quality) => (
+              {tr(site.qualities, locale).map((quality) => (
                 <li
                   key={quality}
                   className="rounded-full border border-accent/30 bg-accent/5 px-4 py-1.5 text-sm text-accent-soft"
@@ -53,11 +45,11 @@ export default function About() {
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
               <span className="flex items-center gap-2">
                 <MapPin size={16} className="text-accent" aria-hidden="true" />
-                {site.location}, Île-de-France
+                {t.about.region}
               </span>
               <span className="flex items-center gap-2">
                 <Languages size={16} className="text-accent" aria-hidden="true" />
-                {site.languages.join(" · ")}
+                {tr(site.languages, locale).join(" · ")}
               </span>
             </div>
           </div>

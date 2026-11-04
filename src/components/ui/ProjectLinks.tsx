@@ -1,10 +1,12 @@
 import { ExternalLink } from "lucide-react";
 import GithubIcon from "@/components/ui/GithubIcon";
 import type { Project } from "@/data/projects";
+import { getI18n } from "@/i18n/server";
 
 /** Boutons « Voir le code » / « Voir le site » d'un projet (si renseignés). */
-export default function ProjectLinks({ project }: { project: Project }) {
+export default async function ProjectLinks({ project }: { project: Project }) {
   if (!project.github && !project.demo) return null;
+  const { t } = await getI18n();
 
   return (
     <div className="flex flex-wrap gap-4">
@@ -16,7 +18,7 @@ export default function ProjectLinks({ project }: { project: Project }) {
           className="inline-flex items-center gap-2 rounded-full border border-line-strong px-6 py-3 font-semibold transition hover:-translate-y-1 hover:border-accent hover:text-accent"
         >
           <GithubIcon size={18} />
-          Voir le code
+          {t.projects.viewCode}
         </a>
       )}
       {project.demo && (
@@ -27,7 +29,7 @@ export default function ProjectLinks({ project }: { project: Project }) {
           className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-on-accent transition hover:-translate-y-1 hover:bg-accent-hover"
         >
           <ExternalLink size={18} aria-hidden="true" />
-          Voir le site
+          {t.projects.viewSite}
         </a>
       )}
     </div>

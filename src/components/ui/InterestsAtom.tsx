@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { interests } from "@/data/interests";
+import { tr } from "@/i18n/config";
+import { useI18n } from "@/i18n/client";
 
 // Chaque orbite est une ellipse (rayons en % de la taille du bloc),
 // inclinée d'un angle différent, comme le symbole d'un atome.
@@ -35,6 +37,7 @@ function applyPosition(el: HTMLElement, orbitIndex: number, t: number) {
 }
 
 export default function InterestsAtom() {
+  const { locale, t } = useI18n();
   const electrons = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function InterestsAtom() {
     <div className="relative mx-auto w-full max-w-md">
       <div
         role="img"
-        aria-label={`Mes centres d’intérêt : ${interests.map((i) => i.label).join(", ")}`}
+        aria-label={`${t.hero.interests} : ${interests.map((i) => tr(i.label, locale)).join(", ")}`}
         className="relative aspect-square w-full"
       >
         {/* Orbites */}
@@ -104,11 +107,11 @@ export default function InterestsAtom() {
           const initial = positionOn(i, ORBITS[i].phase);
           return (
             <div
-              key={label}
+              key={label.fr}
               ref={(el) => {
                 electrons.current[i] = el;
               }}
-              title={label}
+              title={tr(label, locale)}
               className="absolute will-change-transform"
               style={{
                 left: `${initial.x.toFixed(2)}%`,
@@ -128,11 +131,11 @@ export default function InterestsAtom() {
       <ul className="mt-6 flex flex-wrap justify-center gap-3">
         {interests.map(({ label, icon: Icon }) => (
           <li
-            key={label}
+            key={label.fr}
             className="flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm text-muted"
           >
             <Icon size={16} className="text-accent" aria-hidden="true" />
-            {label}
+            {tr(label, locale)}
           </li>
         ))}
       </ul>

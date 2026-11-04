@@ -1,8 +1,11 @@
 import { site } from "@/data/site";
+import { getI18n } from "@/i18n/server";
 import GithubIcon from "@/components/ui/GithubIcon";
 import InterestsAtom from "@/components/ui/InterestsAtom";
 
-export default function Hero() {
+export default async function Hero() {
+  const { t } = await getI18n();
+
   return (
     <section
       id="home"
@@ -16,13 +19,13 @@ export default function Hero() {
         <div className="animate-fade-up">
           <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-accent/20 bg-accent/5 px-4 py-2">
             <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-            <span className="text-xs tracking-wide text-accent-soft">
-              {site.availability.toUpperCase()}
+            <span className="text-xs uppercase tracking-wide text-accent-soft">
+              {t.hero.availability}
             </span>
           </div>
 
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-subtle">
-            Bonjour, je suis
+            {t.hero.hello}
           </p>
 
           <h1 className="text-6xl font-bold leading-tight tracking-tight md:text-8xl">
@@ -30,17 +33,14 @@ export default function Hero() {
           </h1>
 
           <h2 className="mt-5 text-2xl font-semibold text-fg-soft md:text-3xl">
-            Développeur{" "}
-            <span className="text-accent">Fullstack</span>
+            {t.hero.role}{" "}
+            <span className="text-accent">{t.hero.roleAccent}</span>
             <br />
-            en Bachelor à l’IPSSI.
+            {t.hero.roleEnd}
           </h2>
 
           <p className="mt-7 max-w-lg text-base leading-8 text-muted">
-            Deux ans d’alternance chez Alphalink m’ont appris à livrer des
-            interfaces React utilisées par de vrais clients. Je cherche
-            aujourd’hui une nouvelle alternance pour continuer à construire,
-            du front au back.
+            {t.hero.intro}
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
@@ -48,21 +48,21 @@ export default function Hero() {
               href="#projects"
               className="rounded-full bg-accent px-7 py-4 font-semibold text-on-accent transition hover:-translate-y-1 hover:bg-accent-hover"
             >
-              Découvrir mes projets ↗
+              {t.hero.ctaProjects}
             </a>
 
             <a
               href="#contact"
               className="rounded-full border border-line-strong px-7 py-4 font-semibold text-fg transition hover:-translate-y-1 hover:border-accent hover:text-accent"
             >
-              Me contacter
+              {t.hero.ctaContact}
             </a>
 
             <a
               href={site.socials.github.url}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Mon GitHub (${site.socials.github.username})`}
+              aria-label={`${t.hero.github} (${site.socials.github.username})`}
               title="GitHub"
               className="flex h-14 w-14 items-center justify-center rounded-full border border-line-strong text-fg transition hover:-translate-y-1 hover:border-accent hover:text-accent"
             >

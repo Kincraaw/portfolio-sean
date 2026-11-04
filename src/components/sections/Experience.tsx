@@ -1,15 +1,19 @@
 import { Briefcase, GraduationCap, type LucideIcon } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { education, experiences, type TimelineItem } from "@/data/experience";
+import { tr, type Locale } from "@/i18n/config";
+import { getI18n } from "@/i18n/server";
 
 function Timeline({
   icon: Icon,
   heading,
   items,
+  locale,
 }: {
   icon: LucideIcon;
   heading: string;
   items: TimelineItem[];
+  locale: Locale;
 }) {
   return (
     <div>
@@ -22,20 +26,23 @@ function Timeline({
 
       <ol className="relative ml-5 border-l border-line-strong">
         {items.map((item) => (
-          <li key={`${item.title}-${item.period}`} className="reveal relative pb-10 pl-8 last:pb-0">
+          <li
+            key={`${item.title.fr}-${item.period.fr}`}
+            className="reveal relative pb-10 pl-8 last:pb-0"
+          >
             <span
               aria-hidden="true"
               className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full border-2 border-bg bg-accent ring-4 ring-accent/15"
             />
             <p className="text-xs uppercase tracking-wider text-subtle">
-              {item.period}
+              {tr(item.period, locale)}
             </p>
-            <h4 className="mt-2 text-lg font-semibold text-fg">{item.title}</h4>
-            <p className="text-sm font-medium text-accent">{item.place}</p>
+            <h4 className="mt-2 text-lg font-semibold text-fg">{tr(item.title, locale)}</h4>
+            <p className="text-sm font-medium text-accent">{tr(item.place, locale)}</p>
 
             {item.details && (
               <ul className="mt-3 space-y-1.5 text-sm leading-6 text-muted">
-                {item.details.map((detail) => (
+                {tr(item.details, locale).map((detail) => (
                   <li key={detail} className="flex gap-2">
                     <span aria-hidden="true" className="text-accent">
                       ›
@@ -52,21 +59,23 @@ function Timeline({
   );
 }
 
-export default function Experience() {
+export default async function Experience() {
+  const { locale, t } = await getI18n();
+
   return (
     <section id="parcours" className="px-6 py-32">
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           index={4}
-          label="Parcours"
-          title="Mon chemin"
-          highlight="jusqu’ici."
+          label={t.experience.label}
+          title={t.experience.title}
+          highlight={t.experience.highlight}
           className="reveal mb-14"
         />
 
         <div className="grid gap-16 lg:grid-cols-[3fr_2fr]">
-          <Timeline icon={Briefcase} heading="Expériences" items={experiences} />
-          <Timeline icon={GraduationCap} heading="Formations" items={education} />
+          <Timeline icon={Briefcase} heading={t.experience.jobs} items={experiences} locale={locale} />
+          <Timeline icon={GraduationCap} heading={t.experience.education} items={education} locale={locale} />
         </div>
       </div>
     </section>

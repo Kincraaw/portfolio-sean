@@ -4,18 +4,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { localePath } from "@/i18n/config";
+import { useI18n } from "@/i18n/client";
 
-const links = [
-  // « / » devant l'ancre : les liens marchent aussi depuis les autres pages.
-  // Le Contact (footer) est présent sur toutes les pages.
-  { id: "home", name: "Accueil", href: "/#home" },
-  { id: "about", name: "À propos", href: "/#about" },
-  { id: "skills", name: "Compétences", href: "/#skills" },
-  { id: "projects", name: "Projets", href: "/#projects" },
-  { id: "parcours", name: "Parcours", href: "/#parcours" },
-  { id: "cv", name: "CV", href: "/#cv" },
-  { id: "contact", name: "Contact", href: "#contact" },
-];
+// Sections de l'accueil. Le Contact (footer) est présent sur toutes les pages,
+// d'où son ancre locale « #contact ».
+const sectionIds = ["home", "about", "skills", "projects", "parcours", "cv", "contact"] as const;
+type SectionId = (typeof sectionIds)[number];
 
 /** Sur l'accueil : section actuellement au milieu de l'écran. */
 function useActiveSection(enabled: boolean) {
@@ -24,8 +20,8 @@ function useActiveSection(enabled: boolean) {
   useEffect(() => {
     if (!enabled) return;
 
-    const sections = links
-      .map((link) => document.getElementById(link.id))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
     // Une section est « active » quand elle croise la ligne du milieu de l'écran.
@@ -46,21 +42,40 @@ function useActiveSection(enabled: boolean) {
 }
 
 export default function Navbar() {
+  const { locale, t } = useI18n();
   const [open, setOpen] = useState(false);
-  const pathname = usePathname() ?? "/";
-  const activeSection = useActiveSection(pathname === "/");
+  const pathname = usePathname() ?? `/${locale}`;
+  // Chemin sans la langue : "/fr/projets/x" → "/projets/x", "/en" → "/"
+  const path = pathname.replace(/^\/(fr|en)(?=\/|$)/, "") || "/";
+  const activeSection = useActiveSection(path === "/");
 
   // Sur les pages secondaires, on met en avant la rubrique parente.
-  const current = pathname.startsWith("/competences")
+  const current = path.startsWith("/competences")
     ? "skills"
-    : pathname.startsWith("/projets")
+    : path.startsWith("/projets")
       ? "projects"
       : activeSection;
+
+  const labels: Record<SectionId, string> = {
+    home: t.nav.home,
+    about: t.nav.about,
+    skills: t.nav.skills,
+    projects: t.nav.projects,
+    parcours: t.nav.parcours,
+    cv: t.nav.cv,
+    contact: t.nav.contact,
+  };
+
+  const links = sectionIds.map((id) => ({
+    id,
+    name: labels[id],
+    href: id === "contact" ? "#contact" : localePath(locale, `/#${id}`),
+  }));
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-line bg-bg/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <Link href="/#home" className="text-xl font-bold tracking-tight">
+        <Link href={localePath(locale, "/#home")} className="text-xl font-bold tracking-tight">
           SEAN<span className="text-accent">.</span>
         </Link>
 
@@ -89,19 +104,20 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <ThemeToggle />
 
           <a
             href="#contact"
-            className="hidden rounded-full border border-accent/50 px-5 py-2 text-sm text-accent-soft transition hover:bg-accent hover:text-on-accent lg:block"
+            className="hidden rounded-full border border-accent/50 px-5 py-2 text-sm text-accent-soft transition hover:bg-accent hover:text-on-accent xl:block"
           >
-            Me contacter ↗
+            {t.nav.contactCta}
           </a>
 
           <button
             onClick={() => setOpen(!open)}
             className="text-2xl text-fg lg:hidden"
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
           >
             {open ? "×" : "☰"}

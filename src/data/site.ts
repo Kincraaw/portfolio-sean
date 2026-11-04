@@ -1,3 +1,5 @@
+import type { Localized } from "@/i18n/config";
+
 // Adresse publique du site : NEXT_PUBLIC_SITE_URL si définie, sinon l'URL de
 // production fournie automatiquement par Vercel, sinon le serveur local.
 const url =
@@ -10,11 +12,14 @@ export const site = {
   url,
   name: "Sean",
   fullName: "Sean Chaophrasy-Tran",
-  role: "Développeur Fullstack",
-  location: "Lognes",
-  availability: "En recherche d’alternance — 12 mois",
-  qualities: ["Autonome", "Consciencieux", "Travail en équipe", "Capacité d’adaptation"],
-  languages: ["Français", "Anglais", "Espagnol"],
+  qualities: {
+    fr: ["Autonome", "Consciencieux", "Travail en équipe", "Capacité d’adaptation"],
+    en: ["Autonomous", "Conscientious", "Team player", "Adaptable"],
+  } satisfies Localized<string[]>,
+  languages: {
+    fr: ["Français", "Anglais", "Espagnol"],
+    en: ["French", "English", "Spanish"],
+  } satisfies Localized<string[]>,
   email: "sean.chaotran@gmail.com",
   cvPath: "/cv-sean.pdf",
   socials: {
@@ -24,4 +29,4 @@ export const site = {
       url: "https://github.com/Kincraaw",
     },
   },
-} as const;
+};

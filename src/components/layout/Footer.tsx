@@ -1,9 +1,11 @@
 import { Mail } from "lucide-react";
 import { site } from "@/data/site";
+import { getI18n } from "@/i18n/server";
 import GithubIcon from "@/components/ui/GithubIcon";
 import ContactForm from "@/components/ui/ContactForm";
 
-export default function Footer() {
+export default async function Footer() {
+  const { t } = await getI18n();
   const { github } = site.socials;
 
   return (
@@ -12,18 +14,15 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[5fr_6fr] lg:gap-16">
           <div>
             <p className="mb-5 text-sm uppercase tracking-[0.3em] text-accent">
-              06 — Contact
+              06 — {t.contact.label}
             </p>
 
             <h2 className="text-4xl font-bold md:text-6xl">
-              Une alternance à proposer ?
-              <span className="text-accent"> Parlons-en.</span>
+              {t.contact.title}
+              <span className="text-accent"> {t.contact.highlight}</span>
             </h2>
 
-            <p className="mt-6 max-w-xl leading-8 text-muted">
-              Remplissez le formulaire ou écrivez-moi directement : je réponds
-              rapidement. Vous pouvez aussi jeter un œil à mon code sur GitHub.
-            </p>
+            <p className="mt-6 max-w-xl leading-8 text-muted">{t.contact.intro}</p>
 
             <ul className="mt-10 space-y-4">
               <li>
@@ -57,8 +56,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-24 flex flex-col justify-between gap-4 border-t border-line pt-8 text-sm text-subtle md:flex-row">
-          <p>© {new Date().getFullYear()} {site.fullName}. Tous droits réservés.</p>
-          <p>Conçu et développé par moi-même avec Next.js et Tailwind CSS.</p>
+          <p>
+            © {new Date().getFullYear()} {site.fullName}. {t.footer.rights}
+          </p>
+          <p>{t.footer.madeWith}</p>
         </div>
       </div>
     </footer>

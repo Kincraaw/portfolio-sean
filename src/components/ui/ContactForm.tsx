@@ -3,13 +3,7 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 import { site } from "@/data/site";
-
-const subjects = [
-  "Proposition d’alternance",
-  "Proposition de stage / emploi",
-  "Question sur un projet",
-  "Autre",
-];
+import { useI18n } from "@/i18n/client";
 
 const field =
   "w-full rounded-xl border border-line-strong bg-bg/60 px-4 py-3 text-fg placeholder:text-subtle transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
@@ -19,6 +13,8 @@ const field =
  * avec un email déjà rédigé et adressé à Sean.
  */
 export default function ContactForm() {
+  const { t } = useI18n();
+  const f = t.contact.form;
   const [sent, setSent] = useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -30,22 +26,14 @@ export default function ContactForm() {
     const subject = String(data.get("subject") ?? "");
     const message = String(data.get("message") ?? "").trim();
 
-    const body = [
-      message,
-      "",
-      "—",
-      name,
-      company && `Entreprise : ${company}`,
-      `Email : ${email}`,
-    ]
-      .filter((line) => line !== "")
+    const signature = [name, company && `${f.companyLine} : ${company}`, `Email : ${email}`]
+      .filter(Boolean)
       .join("\n");
+    const body = `${message}\n\n—\n${signature}`;
 
-    const mailto = `mailto:${site.email}?subject=${encodeURIComponent(
+    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
       `[Portfolio] ${subject} — ${name}`,
     )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
     setSent(true);
   }
 
@@ -56,31 +44,42 @@ export default function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-2 block text-sm text-muted">Nom *</span>
-          <input name="name" required autoComplete="name" className={field} placeholder="Jeanne Dupont" />
+          <span className="mb-2 block text-sm text-muted">{f.name} *</span>
+          <input
+            name="name"
+            required
+            autoComplete="name"
+            className={field}
+            placeholder={f.namePlaceholder}
+          />
         </label>
         <label className="block">
-          <span className="mb-2 block text-sm text-muted">Email *</span>
+          <span className="mb-2 block text-sm text-muted">{f.email} *</span>
           <input
             name="email"
             type="email"
             required
             autoComplete="email"
             className={field}
-            placeholder="jeanne@entreprise.fr"
+            placeholder={f.emailPlaceholder}
           />
         </label>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-2 block text-sm text-muted">Entreprise</span>
-          <input name="company" autoComplete="organization" className={field} placeholder="Facultatif" />
+          <span className="mb-2 block text-sm text-muted">{f.company}</span>
+          <input
+            name="company"
+            autoComplete="organization"
+            className={field}
+            placeholder={f.optional}
+          />
         </label>
         <label className="block">
-          <span className="mb-2 block text-sm text-muted">Sujet</span>
-          <select name="subject" className={field} defaultValue={subjects[0]}>
-            {subjects.map((subject) => (
+          <span className="mb-2 block text-sm text-muted">{f.subject}</span>
+          <select name="subject" className={field} defaultValue={f.subjects[0]}>
+            {f.subjects.map((subject) => (
               <option key={subject} value={subject} className="bg-card text-fg">
                 {subject}
               </option>
@@ -90,13 +89,13 @@ export default function ContactForm() {
       </div>
 
       <label className="block">
-        <span className="mb-2 block text-sm text-muted">Message *</span>
+        <span className="mb-2 block text-sm text-muted">{f.message} *</span>
         <textarea
           name="message"
           required
           rows={5}
           className={`${field} resize-y`}
-          placeholder="Bonjour Sean, …"
+          placeholder={f.messagePlaceholder}
         />
       </label>
 
@@ -106,13 +105,11 @@ export default function ContactForm() {
           className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-semibold text-on-accent transition hover:-translate-y-1 hover:bg-accent-hover"
         >
           <Send size={18} aria-hidden="true" />
-          Envoyer le message
+          {f.submit}
         </button>
 
         <p className="text-xs text-subtle" aria-live="polite">
-          {sent
-            ? "Votre messagerie s’est ouverte : il ne reste qu’à cliquer sur Envoyer."
-            : "L’envoi ouvre votre messagerie avec le message prêt."}
+          {sent ? f.sent : f.hint}
         </p>
       </div>
     </form>
