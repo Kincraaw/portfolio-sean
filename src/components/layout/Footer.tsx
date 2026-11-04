@@ -6,7 +6,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="border-t border-line px-6 py-20">
-      <div className="mx-auto max-w-7xl">
+      <div className="reveal mx-auto max-w-7xl">
         <p className="mb-5 text-sm uppercase tracking-[0.3em] text-accent">
           06 — Contact
         </p>

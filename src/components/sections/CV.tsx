@@ -5,7 +5,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 export default function CV() {
   return (
     <section id="cv" className="w-full px-6 py-32">
-      <div className="mx-auto max-w-6xl">
+      <div className="reveal mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <SectionTitle index={5} label="CV" title="Mon" highlight="CV." className="" />
 

@@ -8,13 +8,21 @@ export default function Projects() {
   return (
     <section id="projects" className="px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle index={3} label="Projets" title="Ce que j’ai" highlight="construit." />
+        <SectionTitle
+          index={3}
+          label="Projets"
+          title="Ce que j’ai"
+          highlight="construit."
+          className="reveal mb-14"
+        />
 
         <div className="grid gap-6 md:grid-cols-2">
           {projects.map((project, index) => (
+            // L'animation d'apparition est sur un conteneur à part, pour ne pas
+            // bloquer l'effet de survol (translate) de la carte.
+            <div key={project.slug} className="reveal flex">
             <article
-              key={project.slug}
-              className="group relative flex flex-col rounded-3xl border border-line bg-surface p-8 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-accent/5"
+              className="group relative flex w-full flex-col rounded-3xl border border-line bg-surface p-8 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-accent/5"
             >
               <div className="flex items-start justify-between gap-4">
                 <span className="text-5xl font-bold text-accent/20 transition group-hover:text-accent/40">
@@ -45,6 +53,7 @@ export default function Projects() {
 
               <SkillBadges slugs={project.skills} size="sm" />
             </article>
+            </div>
           ))}
         </div>
       </div>

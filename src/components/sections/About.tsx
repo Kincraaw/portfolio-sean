@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 export default function About() {
   return (
     <section id="about" className="px-6 py-32">
-      <div className="mx-auto max-w-7xl">
+      <div className="reveal mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-2">
           <SectionTitle
             index={1}

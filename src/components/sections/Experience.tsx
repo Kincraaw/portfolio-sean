@@ -22,7 +22,7 @@ function Timeline({
 
       <ol className="relative ml-5 border-l border-line-strong">
         {items.map((item) => (
-          <li key={`${item.title}-${item.period}`} className="relative pb-10 pl-8 last:pb-0">
+          <li key={`${item.title}-${item.period}`} className="reveal relative pb-10 pl-8 last:pb-0">
             <span
               aria-hidden="true"
               className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full border-2 border-bg bg-accent ring-4 ring-accent/15"
@@ -56,7 +56,13 @@ export default function Experience() {
   return (
     <section id="parcours" className="px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle index={4} label="Parcours" title="Mon chemin" highlight="jusqu’ici." />
+        <SectionTitle
+          index={4}
+          label="Parcours"
+          title="Mon chemin"
+          highlight="jusqu’ici."
+          className="reveal mb-14"
+        />
 
         <div className="grid gap-16 lg:grid-cols-[3fr_2fr]">
           <Timeline icon={Briefcase} heading="Expériences" items={experiences} />

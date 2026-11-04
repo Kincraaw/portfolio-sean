@@ -13,9 +13,11 @@ export default function Skills() {
           label="Compétences"
           title="Mon environnement"
           highlight="technique."
+          className="reveal mb-14"
         />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* reveal sur la grille (pas sur les cartes) pour garder leur effet de survol */}
+        <div className="reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {skills.map((skill, index) => {
             const count = getProjectsBySkill(skill.slug).length;
 
