@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Sean
 
-## Getting Started
+Mon portfolio personnel : présentation, compétences, projets et CV.
 
-First, run the development server:
+Construit avec **Next.js 16**, **React 19**, **TypeScript** et **Tailwind CSS 4**.
+
+## Fonctionnalités
+
+- Thème clair (lavande) et sombre (noir bleuté), avec transition animée
+- Atome animé présentant mes centres d’intérêt
+- Une page dédiée par compétence, listant les projets liés
+- Aperçu et téléchargement du CV
+
+## Lancer le projet
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # serveur de développement → http://localhost:3000
+npm run build    # build de production
+npm run lint     # vérification du code
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/                 # Routes Next.js (accueil, /competences/[slug])
+├── components/
+│   ├── layout/          # Navbar, Footer
+│   ├── sections/        # Sections de la page d'accueil
+│   └── ui/              # Petits composants réutilisables
+└── data/                # Contenu du site (à modifier ici)
+    ├── site.ts          # Nom, email, réseaux, chemin du CV
+    ├── skills.ts        # Compétences
+    ├── projects.ts      # Projets
+    └── interests.ts     # Centres d'intérêt
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Ajouter un projet
 
-## Learn More
+Ajoute un bloc dans `src/data/projects.ts` et liste ses compétences dans `skills`
+(ex. `["react", "typescript"]`) : il apparaît automatiquement sur la page de
+chaque compétence concernée.
 
-To learn more about Next.js, take a look at the following resources:
+### Changer les couleurs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Les couleurs des deux thèmes sont définies dans `src/app/globals.css`.

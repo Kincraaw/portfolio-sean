@@ -1,0 +1,8 @@
+# Fins de ligne uniformes (LF) dans le dépôt, quel que soit le système
+* text=auto eol=lf
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
