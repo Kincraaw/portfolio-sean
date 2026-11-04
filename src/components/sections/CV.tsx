@@ -7,7 +7,7 @@ export default function CV() {
     <section id="cv" className="w-full px-6 py-32">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
-          <SectionTitle index={4} label="CV" title="Mon" highlight="CV." className="" />
+          <SectionTitle index={5} label="CV" title="Mon" highlight="CV." className="" />
 
           <p className="mt-4 text-muted">
             Toutes mes expériences et compétences, sur une seule page.

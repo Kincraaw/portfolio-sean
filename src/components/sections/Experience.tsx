@@ -56,7 +56,7 @@ export default function Experience() {
   return (
     <section id="parcours" className="px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle index={3} label="Parcours" title="Mon chemin" highlight="jusqu’ici." />
+        <SectionTitle index={4} label="Parcours" title="Mon chemin" highlight="jusqu’ici." />
 
         <div className="grid gap-16 lg:grid-cols-[3fr_2fr]">
           <Timeline icon={Briefcase} heading="Expériences" items={experiences} />
