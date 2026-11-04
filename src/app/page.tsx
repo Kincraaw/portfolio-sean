@@ -1,20 +1,20 @@
 
-import Navbar from "@/src/components/Navbar";
-import Hero from "@/src/components/Hero";
-import About from "@/src/components/About";
-import Skills from "@/src/components/Skills";
-import Footer from "@/src/components/Footer";
-import CV from "@/src/components/CV";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Skills from "@/components/sections/Skills";
+import CV from "@/components/sections/CV";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#080b12] text-white">
+    <main className="min-h-screen overflow-hidden bg-bg text-fg">
       <Navbar />
       <Hero />
       <About />
       <Skills />
-      <Footer />
       <CV />
+      <Footer />
     </main>
   );
 }

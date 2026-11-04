@@ -1,19 +1,106 @@
-
 @import "tailwindcss";
+
+/* `dark:` cible le thème sombre choisi via l'attribut data-theme sur <html> */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Thème sombre (par défaut) : noir bleuté + cyan ---------- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #080b12;
+  --surface: rgba(255, 255, 255, 0.03);
+  --card: #101722;
+  --fg: #ffffff;
+  --fg-soft: #d1d5db;
+  --muted: #9ca3af;
+  --subtle: #6b7280;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.15);
+
+  --accent: #22d3ee;
+  --accent-hover: #67e8f9;
+  --accent-soft: #67e8f9;
+  --on-accent: #080b12;
+
+  --glow-a: rgba(6, 182, 212, 0.1);
+  --glow-b: rgba(37, 99, 235, 0.1);
+}
+
+/* ---------- Thème clair : blanc lavande + violet ---------- */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f5fc;
+  --surface: rgba(124, 58, 237, 0.04);
+  --card: #ffffff;
+  --fg: #1c1733;
+  --fg-soft: #3b3552;
+  --muted: #5f5a78;
+  --subtle: #77718f;
+  --line: rgba(76, 29, 149, 0.12);
+  --line-strong: rgba(76, 29, 149, 0.22);
+
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-soft: #6d28d9;
+  --on-accent: #ffffff;
+
+  --glow-a: rgba(167, 139, 250, 0.28);
+  --glow-b: rgba(216, 180, 254, 0.32);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-glow-a: var(--glow-a);
+  --color-glow-b: var(--glow-b);
+}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #080b12;
-  color: white;
+  background: var(--bg);
+  color: var(--fg);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Fondu des couleurs pendant le changement de thème (classe posée ~600 ms) */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition-property: color, background-color, border-color, fill, stroke,
+    box-shadow, outline-color, text-decoration-color !important;
+  transition-duration: 500ms !important;
+  transition-timing-function: ease !important;
+  transition-delay: 0s !important;
+}
+
+/* Les icônes du bouton gardent leur propre animation (rotation + échelle) */
+.theme-transition button svg {
+  transition-property: all !important;
 }
 
 ::selection {
-  background: #22d3ee;
-  color: #080b12;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 @keyframes fade-up {
